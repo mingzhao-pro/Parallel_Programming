@@ -14,8 +14,8 @@ object VerticalBoxBlurRunner {
 
   def main(args: Array[String]): Unit = {
     val radius = 3
-    val width = 1920
-    val height = 1080
+    val width = 192
+    val height = 108
     val src = new Img(width, height)
     val dst = new Img(width, height)
     val seqtime = standardConfig measure {
@@ -23,7 +23,7 @@ object VerticalBoxBlurRunner {
     }
     println(s"sequential blur time: $seqtime ms")
 
-    val numTasks = 32
+    val numTasks = 8
     val partime = standardConfig measure {
       VerticalBoxBlur.parBlur(src, dst, numTasks, radius)
     }
@@ -32,6 +32,8 @@ object VerticalBoxBlurRunner {
   }
 
 }
+
+
 
 /** A simple, trivially parallelizable computation. */
 object VerticalBoxBlur {
